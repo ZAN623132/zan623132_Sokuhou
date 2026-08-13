@@ -1,0 +1,120 @@
+header {
+                width: 100%;
+                margin: 0;
+                padding: .8rem;
+                border-bottom: 1px solid var(--color-bg-thirdly);
+                background-color: var(--color-bg);
+            }
+
+            header>div {
+                max-width: 960px;
+                margin:0 1em;
+                display: flex;
+            }
+
+            .icon {
+                display: inline-block;
+                border-radius: 50%;
+            }
+
+            header a {
+                color: var(--color-text);
+                display: flex;
+                gap: .6rem
+            }
+
+footer {
+                width: 100%;
+                margin: 0;
+                padding: 2rem;
+                border-top: 1px solid var(--color-bg-thirdly);
+                background-color: var(--color-bg);
+            }
+
+            footer>div {
+                max-width: 960px;
+                margin:0 1em
+            }
+
+            footer p {
+                color: var(--color-text);
+            }
+
+body,h1,h2,h3,p,ul,ol {
+                margin: 0;
+                padding: 0;
+                font-weight: 400;
+            }
+* {
+    box-sizing: border-box;
+}
+
+:root {
+                --color-bg: #a6a6a6;
+                --color-bg-secondary: #262626;
+                --color-bg-thirdly: #ffffff;
+                --color-text: #262626;
+                --color-text-secondary: #a6a6a6;
+                --font-base: sans-serif
+            }
+
+            .button{
+                display: inline-block;
+                width: 100%;             /* 画面幅いっぱいに広げる */
+                max-width: 320px;        /* 大きくなりすぎない制限 */
+                padding: 16px 24px;      /* 2. 指で押しやすい高さ */
+                margin-top: 20px;
+                background-color: #007bff;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 8px;      /* 指に馴染む丸み */
+                font-weight: bold;
+                font-size: 1rem;
+                text-align: center;
+      
+            /* タップ時の青い枠線を消し、アニメーションを追加 */
+            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.2s, transform 0.1s;
+            }
+            
+            body {
+                font-family: var(--font-base);
+                background: var(--color-bg);
+                /* background-image: url(miku.svg); */
+                color: var(--color-text);
+                line-height: 1.8
+            }
+
+            main {
+                width: 100%;
+                margin: 0;
+                padding: .8rem;
+                /* background-image: url(miku2.svg); */
+            }
+
+            main>div {
+                max-width: 960px;
+                margin:auto
+            }
+
+            main a {
+                color: var(--color-text);
+            }
+
+            main h2 {
+                padding: .2em 1em;
+                margin: 2em 0 .5em;
+                background: var(--color-bg-secondary);
+                color: var(--color-text-secondary);
+            }
+
+
+            main h3 {
+                padding: .2em .5em;
+                margin: .3em 0;
+                border-bottom: 1px solid var(--color-bg-secondary)
+            }
+
+            main ul {margin: 1em 0}
+            ul ul {margin: 0}
+            main li {margin-left: 2em}
