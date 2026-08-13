@@ -60,10 +60,11 @@ body,h1,h2,h3,p,ul,ol {
 
             .button{
                 display: block;
-                width: 100%;             /* 画面幅いっぱいに広げる */
+                width: 100%;
+                height: 64px;             /* 画面幅いっぱいに広げる */
                 max-width: 320px;        /* 大きくなりすぎない制限 */
                 padding: 16px 24px;      /* 2. 指で押しやすい高さ */
-                margin-top: 20px;
+                margin: 30px;
                 background-color: #007bff;
                 color: #ffffff;
                 text-decoration: none;
@@ -71,7 +72,7 @@ body,h1,h2,h3,p,ul,ol {
                 font-weight: bold;
                 font-size: 1rem;
                 text-align: center;
-                margin: 0 auto;
+                margin: 20px auto;
       
             /* タップ時の青い枠線を消し、アニメーションを追加 */
             -webkit-tap-highlight-color: transparent;
@@ -90,7 +91,6 @@ body,h1,h2,h3,p,ul,ol {
                 width: 100%;
                 margin: 0;
                 padding: .8rem;
-                /* background-image: url(miku2.svg); */
             }
 
             main>div {
