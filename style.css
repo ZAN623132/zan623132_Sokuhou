@@ -59,7 +59,7 @@ body,h1,h2,h3,p,ul,ol {
             }
 
             .button{
-                display: inline-block;
+                display: block;
                 width: 100%;             /* 画面幅いっぱいに広げる */
                 max-width: 320px;        /* 大きくなりすぎない制限 */
                 padding: 16px 24px;      /* 2. 指で押しやすい高さ */
