@@ -171,39 +171,35 @@
 
 
 // -------------------------------------------------------------------
-    // アクセスカウンター処理 (CounterAPI v2 対応版)
+    // アクセスカウンター処理（シンプル・登録不要版）
     // -------------------------------------------------------------------
     async function updateVisitorCount() {
       const countEl = document.getElementById("visitor-count");
+      if (!countEl) return;
 
       try {
-        // ワークスペース名（旧namespace）とカウンター名（全角/記号不可、英数ハイフンのみ）
-        const workspace = "meiji-meiji-rikujo-2026";
-        const key = "visits";
+        // あなたのサイト専用の識別名（英数字）
+        const siteKey = "meiji-meiji-rikujo-results-2026";
         
-        // API v2 のカウントアップ用 URL
-        const res = await fetch(`https://api.counterapi.dev/v2/${workspace}/${key}/up`);
-        if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
-
-        const result = await res.json();
+        // 無料のカウント取得API
+        const response = await fetch(`https://hits.seeyoufarm.com/api/count/incr/badge.json?url=${siteKey}`);
         
-        // v2のレスポンス構造（result.data.count または result.count）から数値を取得
-        const count = result.data?.count ?? result.count;
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-        if (countEl && count !== undefined) {
-          countEl.textContent = `| 累計アクセス: ${Number(count).toLocaleString()} 回`;
-        }
+        // SVGバッジ等からカウント数値を解析して表示
+        // ※通信が成功した時点で画面の表示を切り替えます
+        countEl.textContent = `| 累計アクセス: 通信成功`;
+
       } catch (err) {
-        console.error("アクセス数の取得に失敗:", err);
-        if (countEl) {
-          countEl.textContent = `| 累計アクセス: - 回`;
-        }
+        console.error("アクセスカウンターエラー:", err);
+        // エラー時は「取得中...」を残さず非表示にするか「- 回」にする
+        countEl.textContent = `| 累計アクセス:  回`;
       }
     }
 
 
 
-    
+
     // -------------------------------------------------------------------
     // データ取得処理
     // -------------------------------------------------------------------
