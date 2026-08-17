@@ -178,10 +178,12 @@ footer {
                 background-color: var(--color-bg-thirdly);
                 text-align: right;
                 padding: 0 0.5em 0;
+                font-size:12px
             }
             table th{
                 background-color: var(--color-bg-secondary);
                 color: var(--color-text-secondary);
+                font-size:12px
                 
             }
             .special{
