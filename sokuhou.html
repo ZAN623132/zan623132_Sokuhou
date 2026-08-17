@@ -171,20 +171,23 @@
 
 
 // -------------------------------------------------------------------
-    // アクセスカウンター処理（全体カウント・CORS対策版）
+    // アクセスカウンター処理（CORSプロキシ経由版）
     // -------------------------------------------------------------------
     async function updateVisitorCount() {
       const countEl = document.getElementById("visitor-count");
       if (!countEl) return;
 
       try {
-        // 無料のCORS対応カウンター（キー名は任意の英数字）
         const key = "rikujo-meiji-2026-unique-key";
-        const res = await fetch(`https://api.codetabs.com/v1/counter?key=${key}`);
+        const targetUrl = `https://api.codetabs.com/v1/counter?key=${key}`;
+        
+        // CORS回避用プロキシ（allorigins）を経由して取得
+        const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`);
         
         if (!res.ok) throw new Error(`HTTPエラー: ${res.status}`);
 
-        const data = await res.json(); // { "count": 123 } の形式で返却される
+        const wrapper = await res.json();
+        const data = JSON.parse(wrapper.contents); // プロキシから受け取った中身をパース
         
         if (data && typeof data.count === "number") {
           countEl.textContent = `| 累計アクセス: ${data.count.toLocaleString()} 回`;
@@ -192,7 +195,6 @@
           throw new Error("データの解析に失敗しました");
         }
       } catch (err) {
-        // F12 のコンソールに具体的な通信エラー内容を出力
         console.error("アクセスカウンター通信詳細エラー:", err);
         countEl.textContent = `| 累計アクセス: - 回`;
       }
