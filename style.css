@@ -3,7 +3,7 @@ header {
                 margin: 0;
                 padding: .8rem;
                 border-bottom: 1px solid var(--color-bg-thirdly);
-                background-color: var(--color-bg);
+                background-color: var(--color-bg-secondary);
             }
 
             header>div {
@@ -18,7 +18,7 @@ header {
             }
 
             header a {
-                color: var(--color-text);
+                color: var(--color-text-secondary);
                 display: flex;
                 gap: .6rem
             }
@@ -28,7 +28,7 @@ footer {
                 margin: 0;
                 padding: .8em;
                 border-top: 1px solid var(--color-bg-thirdly);
-                background-color: var(--color-bg);
+                background-color: var(--color-bg-secondary);
             }
 
             footer>div {
@@ -37,26 +37,64 @@ footer {
             }
 
             footer p {
-                color: var(--color-text);
+                color: var(--color-text-secondary);
             }
 
-body,h1,h2,h3,p,ul,ol {
-                margin: 0;
-                padding: 0;
-                font-weight: 400;
-            }
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
 }
 
 :root {
-                --color-bg: #a6a6a6;
+                --color-bg: #BFBFBF;
                 --color-bg-secondary: #262626;
                 --color-bg-thirdly: #ffffff;
                 --color-text: #262626;
-                --color-text-secondary: #a6a6a6;
+                --color-text-secondary: #BFBFBF;
+                --card-bg:#ffffff;
+                --accent-individual: #2b6cb0;
+                --accent-relay: #2c7a7b;
                 --font-base: sans-serif
             }
+
+            /* タイムテーブル用のボタン */
+            .sp-button-group {
+                display: flex;
+                gap: 8px;
+                width: 100%;
+                padding: 0 16px;
+                box-sizing: border-box;
+                }
+
+                /* aタグ用ボタンのスタイル */
+                .sp-btn {
+                flex: 1;
+                min-width: 0;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px 4px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #ffffff;
+                background-color: #007bff;
+                text-decoration: none; /* aタグの下線を消す */
+                border-radius: 8px;
+                box-sizing: border-box;
+                -webkit-tap-highlight-color: transparent;
+                transition: opacity 0.15s, transform 0.1s;
+                }
+
+                /* タップした瞬間のフィードバック */
+                .sp-btn:active {
+                opacity: 0.8;
+                transform: scale(0.97);
+                }
+
+                .today{background-color: #012b57;}
 
             .button{
                 display: block;
@@ -64,7 +102,6 @@ body,h1,h2,h3,p,ul,ol {
                 height: 64px;             /* 画面幅いっぱいに広げる */
                 max-width: 320px;        /* 大きくなりすぎない制限 */
                 padding: 16px 24px;      /* 2. 指で押しやすい高さ */
-                margin: 30px;
                 background-color: #007bff;
                 color: #ffffff;
                 text-decoration: none;
@@ -82,10 +119,15 @@ body,h1,h2,h3,p,ul,ol {
             body {
                 font-family: var(--font-base);
                 background: var(--color-bg);
-                /* background-image: url(miku.svg); */
                 color: var(--color-text);
-                line-height: 1.8
+                line-height: 1.8;
             }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 0 16px;
+            }
+
 
             main {
                 width: 100%;
@@ -100,6 +142,10 @@ body,h1,h2,h3,p,ul,ol {
 
             main a {
                 color: var(--color-text);
+            }
+
+            main h1{
+                margin: 0.5em 0 2em;
             }
 
             main h2 {
@@ -119,3 +165,25 @@ body,h1,h2,h3,p,ul,ol {
             main ul {margin: 1em 0}
             ul ul {margin: 0}
             main li {margin-left: 2em}
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                border: solid 2px var(--color-bg-secondary);
+                margin: 0.5em 0 2em;
+
+            }
+            table td{
+                border: solid 1px var(--color-bg-secondary);
+                background-color: var(--color-bg-thirdly);
+                text-align: right;
+                padding: 0 0.5em 0;
+            }
+            table th{
+                background-color: var(--color-bg-secondary);
+                color: var(--color-text-secondary);
+                
+            }
+            .special{
+                background-color: var(--color-text-secondary);
+            }
