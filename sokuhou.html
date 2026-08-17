@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="私学大会まとめサイトです">
+  <link rel = "stylesheet" href="style.css" type="text/css">
   <title>速報ダッシュボード - 明大明治</title>
   <style>
     /* --- 基本スタイル --- */
@@ -73,15 +75,16 @@
       background: #edf2f7;
       padding: 10px 16px;
       border-bottom: 1px solid var(--color-bg-thirdly);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      /* display: flex; */
+      /* justify-content: space-between; */
+      /* align-items: center; */
     }
 
     .card-title a {
+      
       font-weight: bold;
       color: var(--color-bg-secondary);
-      text-decoration: none;
+      
     }
     .card-title a:hover { text-decoration: underline; }
 
@@ -128,20 +131,32 @@
   </style>
 </head>
 <body>
+  <header class="page-header">
+    <div>
+      <a href="index.html">
+        <span>トップページ</span>
+      </a>
+    </div>
+    <button class="btn-refresh" onclick="fetchData()">手動更新</button>
+  </header>  
 
-  <header>
+  <!-- <header>
     <div class="container header-inner">
       <div>
-        <div class="header-title">明大明治 陸上部 速報ダッシュボード</div>
+        <div class="header-title">明大明治 陸上部 速報ダッード</div>
         <div id="status-time" class="header-status">データ取得中...</div>
       </div>
       <button class="btn-refresh" onclick="fetchData()">手動更新</button>
     </div>
-  </header>
+  </header> -->
 
   <main class="container">
+    <div>
+      <h1>最速速報システム</h1>
+      <div id="status-time" class="header-status">データ取得中...</div>
     <div id="error-container" class="error-msg" style="display: none;"></div>
     <div id="app-root"></div>
+    </div>
   </main>
 
   <script>
@@ -238,7 +253,7 @@
         item.className = "result-item result-relay";
         item.innerHTML = `
           <div style="display:flex; justify-between; font-weight:bold;">
-            <span>${escapeHtml(res.school)}</span>
+            
             <span class="record-value">${escapeHtml(res.rank_and_record)}</span>
           </div>
           <div class="runners-list">
@@ -249,10 +264,8 @@
         item.className = "result-item result-individual";
         item.innerHTML = `
           <div>
-            <div class="athlete-sub">${escapeHtml(res.rank_and_num)} | ${escapeHtml(res.school)}</div>
-            <div class="athlete-name">${escapeHtml(res.name)}</div>
+            <div class="athlete-name">${escapeHtml(res.rank_and_num)} | ${escapeHtml(res.name)} | ${escapeHtml(res.record)}</div>
           </div>
-          <div class="record-value">${escapeHtml(res.record)}</div>
         `;
       }
 
