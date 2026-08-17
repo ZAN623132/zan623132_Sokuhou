@@ -171,29 +171,30 @@
 
 
 // -------------------------------------------------------------------
-    // アクセスカウンター処理（シンプル・登録不要版）
+    // アクセスカウンター処理（全体カウント・CORS対策版）
     // -------------------------------------------------------------------
     async function updateVisitorCount() {
       const countEl = document.getElementById("visitor-count");
       if (!countEl) return;
 
       try {
-        // あなたのサイト専用の識別名（英数字）
-        const siteKey = "meiji-meiji-rikujo-results-2026";
+        // 無料のCORS対応カウンター（キー名は任意の英数字）
+        const key = "rikujo-meiji-2026-unique-key";
+        const res = await fetch(`https://api.codetabs.com/v1/counter?key=${key}`);
         
-        // 無料のカウント取得API
-        const response = await fetch(`https://hits.seeyoufarm.com/api/count/incr/badge.json?url=${siteKey}`);
+        if (!res.ok) throw new Error(`HTTPエラー: ${res.status}`);
+
+        const data = await res.json(); // { "count": 123 } の形式で返却される
         
-        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-
-        // SVGバッジ等からカウント数値を解析して表示
-        // ※通信が成功した時点で画面の表示を切り替えます
-        countEl.textContent = `| 累計アクセス: 通信成功`;
-
+        if (data && typeof data.count === "number") {
+          countEl.textContent = `| 累計アクセス: ${data.count.toLocaleString()} 回`;
+        } else {
+          throw new Error("データの解析に失敗しました");
+        }
       } catch (err) {
-        console.error("アクセスカウンターエラー:", err);
-        // エラー時は「取得中...」を残さず非表示にするか「- 回」にする
-        countEl.textContent = `| 累計アクセス:  回`;
+        // F12 のコンソールに具体的な通信エラー内容を出力
+        console.error("アクセスカウンター通信詳細エラー:", err);
+        countEl.textContent = `| 累計アクセス: - 回`;
       }
     }
 
