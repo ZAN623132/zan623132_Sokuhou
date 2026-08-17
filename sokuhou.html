@@ -171,29 +171,29 @@
 
 
     // 1. 非同期関数（通信を待てる特別な関数）を定義
-async function updateVisitorCount() {
-  try {
-    // 2. カウンターを識別するための名前を設定
-    const namespace = "my-rikujo-result-site"; // あなたのサイト用の部屋名
-    const key = "visits";                      // カウンター名
+    async function updateVisitorCount() {
+      try {
+        // 2. カウンターを識別するための名前を設定
+        const namespace = "my-rikujo-result-site"; // あなたのサイト用の部屋名
+        const key = "visits";                      // カウンター名
 
-    // 3. CountAPI サーバーの /hit/ URL にアクセスして結果を待つ（ここで+1される）
-    const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-    
-    // 4. 通信結果（JSON形式）を JavaScript のオブジェクトに変換
-    const data = await res.json(); // 例: { "value": 105 } というデータになる
+        // 3. CountAPI サーバーの /hit/ URL にアクセスして結果を待つ（ここで+1される）
+        const res = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+        
+        // 4. 通信結果（JSON形式）を JavaScript のオブジェクトに変換
+        const data = await res.json(); // 例: { "value": 105 } というデータになる
 
-    // 5. HTML上の「#visitor-count」というIDを持つ要素の文字を書き換える
-    document.getElementById("visitor-count").textContent = `累計アクセス数: ${data.value} 回`;
+        // 5. HTML上の「#visitor-count」というIDを持つ要素の文字を書き換える
+        document.getElementById("visitor-count").textContent = `累計アクセス数: ${data.value} 回`;
 
-  } catch (err) {
-    // 6. 通信エラー（CountAPIが停止している等）が起きた場合の処理
-    console.error("アクセス数の取得に失敗しました", err);
-  }
-}
+      } catch (err) {
+        // 6. 通信エラー（CountAPIが停止している等）が起きた場合の処理
+        console.error("アクセス数の取得に失敗しました", err);
+      }
+    }
 
-// 7. この関数を実行する（ページを開いた時に1度だけ呼び出される）
-updateVisitorCount();
+    // 7. この関数を実行する（ページを開いた時に1度だけ呼び出される）
+    updateVisitorCount();
 
     // -------------------------------------------------------------------
     // データ取得処理
