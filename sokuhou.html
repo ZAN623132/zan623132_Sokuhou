@@ -159,8 +159,10 @@
       <span id="visitor-count" style="margin-left: 10px; opacity: 0.8;">| 累計アクセス: 取得中...</span>
       <div id="status-time" class="header-status">データ取得中...</div>
     <div id="error-container" class="error-msg" style="display: none;"></div>
-    <h2>08/19開催分</h2>
+    <h2>08/20開催分</h2>
     <div id="app-root"></div>
+    <h2>08/19開催分</h2>
+    <div id ="app-root-day2"></div>
     <h2>08/18開催分</h2>
     <div id="app-root-past"></div>
     </div>
@@ -172,6 +174,7 @@
     // -------------------------------------------------------------------
     const GIST_ID = "5ec30843576673021e71a22cef4e4b31";
     const GIST_ID_Past = "2936f16b79fb7ccd959d8b16c8c856aa";
+    const GIST_ID_day2 = "f1a9baddf2ea2b53b587d13ff2179614";
     const REFRESH_INTERVAL_SEC = 15;
 
 
@@ -213,9 +216,58 @@
 
 
 
+    // -------------------------------------------------------------------
+    // 過去データ取得処理 0819
+    // -------------------------------------------------------------------
+    async function fetchDataday2() {
+      const errorEl = document.getElementById("error-container");
+      errorEl.style.display = "none";
+
+      try {
+        // API経由ではなく Raw URL から直接取得（60回/時の制限を受けない）
+        const rawUrl = `https://gist.githubusercontent.com/raw/${GIST_ID_day2}/results_day2.json?_t=${Date.now()}`;
+        const response = await fetch(rawUrl);
+        
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+        // Raw通信の場合はそのまま JSON として解析できる
+        const data = await response.json();
+        renderday2(data);
+        // 過去データを何度もとることは多分ないから更新通知を破壊
+        // document.getElementById("status-time").textContent = 
+        //   `最終取得: ${new Date().toLocaleTimeString("ja-JP")} (15秒毎自動更新)`;
+
+      } catch (err) {
+        console.error(err);
+        errorEl.textContent = `通信/解析エラー: ${err.message}`;
+        errorEl.style.display = "block";
+      }
+    }
 
     // -------------------------------------------------------------------
-    // 過去データ取得処理
+    // 過去データ描画処理 (データ構造を展開)
+    // -------------------------------------------------------------------
+    function renderday2(payload) {
+      const root = document.getElementById("app-root-day2");
+      root.innerHTML = "";
+
+      const urls = Object.keys(payload);
+      if (urls.length === 0) {
+        root.innerHTML = '<div class="empty-msg">監視対象データがありません</div>';
+        return;
+      }
+
+      urls.forEach(url => {
+        const race = payload[url];
+        root.appendChild(createCardElement(race));
+      });
+    }
+
+
+
+
+    // -------------------------------------------------------------------
+    // 過去データ取得処理 0818
     // -------------------------------------------------------------------
     async function fetchDataPast() {
       const errorEl = document.getElementById("error-container");
