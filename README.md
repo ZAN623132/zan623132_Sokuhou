@@ -48,7 +48,7 @@ python3 makelist.py
 ### サービス定義ファイルの配置
 `track-checker.service`の中身をシステムフォルダの中に配置します.
 ```bash
-/etc/systemd/system/track-checker.service
+touch /etc/systemd/system/track-checker.service  //自身の環境のシステムフォルダを開いて下さい
 ```
 ### サービス有効化と軌道
 ```bash
