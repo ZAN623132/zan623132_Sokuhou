@@ -10,7 +10,7 @@ Raspberry Pi 5 による軽量なHEADリクエスト監視と,GitHub Gist / Page
 ## 動作環境
 * **OS**: Raspberry Pi OS 64-bit (Debian 13 trixie) 等の Linux 環境
 * **Python**: 3.13.5 で動作確認
-* **ハードウェア**: Raspberry Pi 5 8GB(Raspberry Pi 4 でも動作可能)
+* **ハードウェア**: Raspberry Pi 5 8GB(画面表示あり・遠隔接続ありでメモリ使用量500MB程度)
 ## 使い方
 ### 環境構築
 システムはLinux(Raspberry Pi OS / WSL等)での運用を想定しています.  
