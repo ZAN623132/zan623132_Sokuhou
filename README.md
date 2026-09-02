@@ -39,9 +39,9 @@ python3 makelist.py
 ※URLの先頭に # をつけると対象から外すことが出来ます(詳細は`checker.py`に書いてあります))  
 これで自動実行する準備は整いました  
 
-### 自動実行する方法
+## 自動実行する方法
 電源投入時に自動起動しクラッシュ時にも自動復旧するよう`systemd`サービスとして登録します.
-## サービス定義ファイルの配置
+### サービス定義ファイルの配置
 `track-checker.service`の中身をシステムフォルダの中に配置します.
 ```bash
 /etc/systemd/system/track-checker.service
