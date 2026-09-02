@@ -1,0 +1,12 @@
+[Unit]
+Description=Track Race Checker Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=[USER_NAME]
+WorkingDirectory=/.../Sokuhou
+ExecStart=/.../Sokuhou/venv/bin/python3 /.../Sokuhou/checker.py
+Restart=always
+RestartSec=10
