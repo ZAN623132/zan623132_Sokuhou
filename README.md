@@ -4,7 +4,7 @@
 
 # 使い方
 ## 環境構築
-仮想環境を利用します(以下linuxを想定)
+vevnv仮想環境を利用します(以下Linuxを想定)
 ### フォルダ作成(/.../は好きに書き換えて下さい)
 mkdir -p /.../Sokuhou  
 cd /.../Sokuhou
@@ -21,7 +21,7 @@ pip install requests beautifulsoup4
 ### ファイル作成
 touch checker.py makelist.py
 
-makelist.pyを実行するとtarget2026.txtが作成されます。
+中身を書き込んだ後,makelist.pyを実行するとtarget2026.txtが作成されます  
 これで自動実行する準備は整いました
 
 ## 自動実行する方法
@@ -32,12 +32,11 @@ makelist.pyを実行するとtarget2026.txtが作成されます。
 sudo systemctl daemon-reload  
 sudo systemctl enable track-checker.service
 
-で読み込み・自動実行有効化。電源を入れると自動で起動します。
+で読み込み・自動実行有効化.電源を入れると自動で起動します.  
 ※停止・再開は
 
 sudo systemctl stop track-checker.service  
 sudo systemctl restart track-checker.service
 
+リアルタイムのログ監視をしたい場合
 sudo journalctl -u track-checker.service -f
-
-でリアルタイムのログ監視が可能
