@@ -7,6 +7,10 @@ Raspberry Pi 5 による軽量なHEADリクエスト監視と,GitHub Gist / Page
 
 詳細は(((後で記事のリンク貼る)))で公開しています.  
 
+## 動作環境
+* **OS**: Raspberry Pi OS 64-bit (Debian 13 trixie) 等の Linux 環境
+* **Python**: 3.13.5 で動作確認
+* **ハードウェア**: Raspberry Pi 5 8GB(Raspberry Pi 4 でも動作可能)
 ## 使い方
 ### 環境構築
 システムはLinux(Raspberry Pi OS / WSL等)での運用を想定しています.  
@@ -60,3 +64,6 @@ sudo systemctl restart track-checker.service     //再起動
 sudo systemctl status track-checker.service      //ステータス確認
 sudo journalctl -u track-checker.service -f      //リアルタイムのログ確認
 ```
+
+## ライセンス
+[MIT License](LICENSE)
