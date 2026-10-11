@@ -215,6 +215,35 @@
       }
     }
 
+
+     // -------------------------------------------------------------------
+    // データ取得処理
+    // -------------------------------------------------------------------
+    async function fetchData() {
+      const errorEl = document.getElementById("error-container");
+      errorEl.style.display = "none";
+
+      try {
+        // API経由ではなく Raw URL から直接取得（60回/時の制限を受けない）
+        const rawUrl = `https://gist.githubusercontent.com/raw/${GIST_ID}/results.json?_t=${Date.now()}`;
+        const response = await fetch(rawUrl);
+        
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+        // Raw通信の場合はそのまま JSON として解析できる
+        const data = await response.json();
+        render(data);
+
+        document.getElementById("status-time").textContent = 
+          `最終取得: ${new Date().toLocaleTimeString("ja-JP")} (15秒毎自動更新)`;
+
+      } catch (err) {
+        console.error(err);
+        errorEl.textContent = `通信/解析エラー: ${err.message}`;
+        errorEl.style.display = "block";
+      }
+    }
+
     // -------------------------------------------------------------------
     // 描画処理 (データ構造を展開)
     // -------------------------------------------------------------------
